@@ -16,17 +16,17 @@ class BSTNode:
     def insert(self, value):
     # if value == self.value:
     #     return
-    if value < self.value:
-        if self.left is not None:
-            self.left.insert(value)
+        if value < self.value:
+            if self.left is not None:
+                self.left.insert(value)
+            else:
+                self.left = BSTNode(value)
+        
         else:
-            self.left = BSTNode(value)
-    
-    else:
-        if self.right is not None:
-            self.right.insert(value)
-        else:
-            self.right = BSTNode(value)    
+            if self.right is not None:
+                self.right.insert(value)
+            else:
+                self.right = BSTNode(value)    
 
     def search(self, value):
         if self.value == target:
