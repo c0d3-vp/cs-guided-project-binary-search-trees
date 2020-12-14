@@ -37,7 +37,37 @@ class TreeNode:
         self.value = value
         self.left = left
         self.right = right
-
-def is_valid_BST(self, root):
+​
+# is this function expecting an answer? 
+def is_valid_BST(root):
     # Your code here
-
+    # keep track of the valid range as we're traversing down the tree 
+    # when we go left, limit the upper bound to be root - 1 
+    # when we go right, limit the lower bound to be root + 1 
+    # check if the current node's value falls within the range
+    # check the root's left child
+        # if the left's child value >= root's value 
+            # return False
+    # check the root's right child 
+        # if the right's child value <= root's value 
+            # return False 
+    # otherwise, return True 
+    return recurse(root, float('-inf'), float('inf'))
+​
+def recurse(root, min_bound, max_bound):
+    # base case(s) 
+    # check the current value against the range 
+    # we've traversed the whole tree and never saw a False, so return True 
+    if root is None:
+        return True
+    # if the current value falls outside the range, return False 
+    if root.value < min_bound or root.value > max_bound:
+        return False 
+    # how do we get closer to our base case? 
+    # recurse with the left child and update the range 
+    left = recurse(root.left, min_bound, root.value - 1)
+    # recurse with the right child and update the range 
+    right = recurse(root.right, root.value + 1, max_bound)
+​
+    # if either left or right is False, return False 
+    return left and right
